@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with PhotoLine 19.51 (www.pl32.de) -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="256" height="256" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Screen">
+    <rect fill="#e0f7fa" fill-rule="evenodd" x="32" y="53" width="192.07" height="149.98"/>
+  </g>
+  <g id="Keyboard" transform="matrix(10.666668 0 0 10.666668 0 31.893331)">
+    <path fill="#757575" d="M20 18 C21.1 18 2.9 18 0 18 L0 20 L24 20 L24 18"/>
+  </g>
+  <g id="Bottom Edge Keyboard" transform="matrix(10.666668 0 0 0.988342 0 225.459823)">
+    <path fill="#5b5b5b" d="M20 18 C21.1 18 2.9 18 0 18 L0 20 L24 20 L24 18"/>
+  </g>
+  <g id="Top Edge Keyboard" transform="matrix(10.666668 0 0 1.095005 0 204.183242)">
+    <path fill="#8f8f8f" d="M20 18 C21.1 18 2.9 18 0 18 L0 20 L24 20 L24 18"/>
+  </g>
+  <g id="Screen" transform="matrix(10.666668 0 0 10.666668 0 0)">
+    <path fill="#757575" d="M21 3.01 L3 3.01 C1.9 3.01 1 3.91 1 5.01 L1 9 L3 9 L3 4.99 L21 4.99 L21 19.02 L3 19.02 L3 15 L1 15 L1 19.01 C1 20.11 1.9 20.99 3 20.99 L21 20.99 C22.1 20.99 23 20.11 23 19.01 L23 5.01 C23 3.9 22.1 3.01 21 3.01 Z M8.09 16.03 Z"/>
+  </g>
+  <g id="Bottom edge" transform="matrix(10.666668 0 0 10.666668 0 0)">
+    <path fill="#5b5b5b" d="M23 19.01 C22.87 19.95 22.62 20.59 21.01 20.78 L3 20.78 C1.64 20.76 1.1 19.96 1 19.01 C1 20.11 1.9 20.99 3 20.99 L21 20.99 C22.1 20.99 23 20.11 23 19.01 Z"/>
+  </g>
+  <g id="Top Edge" transform="matrix(10.666668 0 0 10.666668 0 0)">
+    <path fill="#8f8f8f" d="M21 3.01 L3 3.01 C1.9 3.01 1 3.91 1 5.01 C1.09 4.09 1.93 3.3 3 3.26 L20.99 3.26 C22.33 3.3 22.91 4.09 23 5.01 C23 3.9 22.1 3.01 21 3.01 Z"/>
+  </g>
+  <g id="Arrow" transform="matrix(10.666668 0 0 10.666668 0 0)">
+    <path fill="#9c27b0" d="M8.09 16.03 L12.09 12.03 L8.09 8.03 L8.09 11.03 L0.04 11.03 L0.04 13.03 L8.09 13.03"/>
+  </g>
+  <g id="Item 2" transform="matrix(13.500003 0 0 5.333334 -306.654052 -0.962962)">
+    <rect fill="#5f7c8a" fill-rule="evenodd" x="33.81" y="22.19" width="4" height="4"/>
+  </g>
+  <g id="Item 3" transform="matrix(13.500003 0 0 5.333334 -306.654052 42)">
+    <rect fill="#5f7c8a" fill-rule="evenodd" x="33.81" y="22.19" width="4" height="4"/>
+  </g>
+  <g id="Item 1" transform="matrix(13.500003 0 0 5.333334 -306.728118 -43.925926)">
+    <rect fill="#5f7c8a" fill-rule="evenodd" x="33.81" y="22.19" width="4" height="4"/>
+  </g>
+</svg>
