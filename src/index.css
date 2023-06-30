@@ -1,3 +1,4 @@
+
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -42,3 +43,32 @@ body {
 .popup-content{
   color: black;
 } */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Lato', sans-serif;
+  height: 100vh;
+  background-image: url("https://i.imgur.com/XjsYfVd.png");
+  background-repeat: no-repeat;
+  background-position: center 110px;
+  background-size: 100%;
+  position: relative;
+}
+.header{
+ font-size: 1rem;
+  border-bottom: 1px solid rgb(80, 80, 80);
+  padding: 1rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.65);
+  background: #001529;
+  margin-bottom: 3rem;
+}
+
+.footer{
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
+
+}

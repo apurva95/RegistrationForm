@@ -1,61 +1,63 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { ClipLoader } from 'react-spinners';
+import React, { useState } from "react";
+import axios from "axios";
+import { ClipLoader } from "react-spinners";
 // import './RegistrationForm.css'; // Import the CSS file for styling
-import { Button, Col, Form, Input, Row, Popconfirm, Modal } from 'antd';
+import { Button, Col, Form, Input, Row, Popconfirm, Modal, notification } from "antd";
 
 const RegistrationForm: React.FC = () => {
-  const [companyName, setCompanyName] = useState('');
-  const [projectName, setProjectName] = useState('');
-  const [userName, setUserName] = useState('');
-  const [serviceName, setServiceName] = useState('');
-  const [registrationId, setRegistrationId] = useState('');
+  const [companyName, setCompanyName] = useState("");
+  const [projectName, setProjectName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [serviceName, setServiceName] = useState("");
+  const [registrationId, setRegistrationId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = async (event: any) => {
     //event.preventDefault();
-  const companyName = event.companyName.replace(/\s/g, '_');
-  const projectName = event.projectName.replace(/\s/g, '_');
-  const userName = event.userName.replace(/\s/g, '_');
-  const serviceName = event.serviceName.replace(/\s/g, '_');
+    const companyName = event.companyName?.replace(/\s/g, "_");
+    const projectName = event.projectName?.replace(/\s/g, "_");
+    const userName = event.userName?.replace(/\s/g, "_");
+    const serviceName = event.serviceName?.replace(/\s/g, "_");
 
     setIsLoading(true);
-    setError('');
+    setError("");
 
     try {
-      debugger;
       const response = await axios.post(
-        'https://localhost:7155/registration/',
+        "https://localhost:7155/registration/",
         {
           companyName,
           projectName,
           userName,
-          serviceName,
+          serviceName
         },
         {
           headers: {
-            'Content-Type': 'application/json',
-          },
+            "Content-Type": "application/json"
+          }
         }
       );
 
       setRegistrationId(response.data.registrationId);
     } catch (error) {
-      setError('An error occurred. Please try again.');
-      console.error('Error:', error);
+      setError("An error occurred. Please try again.");
+      notification.error({
+        message: "An error occurred. Please try again."
+      });
+      console.error("Error:", error);
     }
 
     setIsLoading(false);
   };
 
   const handlePopupClose = () => {
-    setRegistrationId('');
-    setCompanyName('');
-    setProjectName('');
-    setUserName('');
-    setServiceName('');
+    setRegistrationId("");
+    setCompanyName("");
+    setProjectName("");
+    setUserName("");
+    setServiceName("");
   };
 
   const showModal = () => {
@@ -73,10 +75,10 @@ const RegistrationForm: React.FC = () => {
 
   return (
     <div className="container">
-            {isLoading && (
+      {isLoading && (
         <div className="overlay">
           <div className="spinner">
-            <ClipLoader color={'#ffffff'} loading={true} size={50} />
+            <ClipLoader color={"#ffffff"} loading={true} size={50} />
           </div>
         </div>
       )}
@@ -137,70 +139,69 @@ const RegistrationForm: React.FC = () => {
       <Row>
         <Col span={8}></Col>
         <Col span={8}>
-        <Form
-    name="basic"
-    labelCol={{ span: 8 }}
-    wrapperCol={{ span: 16 }}
-    style={{ maxWidth: 600 }}
-    initialValues={{ remember: true }}
-    onFinish={handleSubmit}
-    layout="vertical"
-    onFinishFailed={()=>{}}
-    autoComplete="off"
-  >
-    <Form.Item
-      label="Company Name"
-      name="companyName"
-      htmlFor='companyName'
-      rules={[{ required: true, message: 'Please input your company name!' }]}
-    >
-      <Input />
-    </Form.Item>
-    <Form.Item
-      label="Project Name"
-      name="projectName"
-      htmlFor='projectName'
-      rules={[{ required: true, message: 'Please input your project name!' }]}
-    >
-      <Input />
-    </Form.Item>
+          <Form
+            name="basic"
+            initialValues={{ remember: true }}
+            onFinish={handleSubmit}
+            layout="vertical"
+            onFinishFailed={() => {}}
+            autoComplete="off"
+          >
+            <Form.Item
+              label="Company Name"
+              name="companyName"
+              htmlFor="companyName"
+              rules={[{ required: true, message: "Please input your company name!" }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Project Name"
+              name="projectName"
+              htmlFor="projectName"
+              rules={[{ required: true, message: "Please input your project name!" }]}
+            >
+              <Input />
+            </Form.Item>
 
-    <Form.Item
-      label="Username"
-      name="userName"
-      htmlFor='userName'
-      rules={[{ required: true, message: 'Please input your username!' }]}
-    >
-      <Input />
-    </Form.Item>
+            <Form.Item
+              label="Username"
+              name="userName"
+              htmlFor="userName"
+              rules={[{ required: true, message: "Please input your username!" }]}
+            >
+              <Input />
+            </Form.Item>
 
-    <Form.Item
-      label="Service Name"
-      name="serviceName"
-      htmlFor='serviceName'
-    >
-      <Input />
-    </Form.Item>
+            <Form.Item label="Service Name" name="serviceName" htmlFor="serviceName">
+              <Input />
+            </Form.Item>
 
-    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-      <Button type="primary" htmlType="submit" disabled={isLoading || !!registrationId} onClick={showModal}>
-        Register
-      </Button>
-    </Form.Item>
+            <Form.Item
+              style={{
+                textAlign: "center"
+              }}
+            >
+              <Button
+                type="primary"
+                htmlType="submit"
+                disabled={isLoading || !!registrationId}
+                onClick={showModal}
+              >
+                Register
+              </Button>
+            </Form.Item>
 
-    {error && <p className="error">{error}</p>}
-        {registrationId && (
-        <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <h3>Registration ID:</h3>
-            <p>{registrationId}</p>
-      </Modal>
-      )}
-
-  </Form>
+            {registrationId && (
+              <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <h3>Registration ID:</h3>
+                <p>{registrationId}</p>
+              </Modal>
+            )}
+          </Form>
         </Col>
         <Col span={8}></Col>
       </Row>
-     
     </div>
   );
 };
