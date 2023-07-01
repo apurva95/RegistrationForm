@@ -9,17 +9,22 @@ const RegistrationForm: React.FC = () => {
   const [projectName, setProjectName] = useState("");
   const [userName, setUserName] = useState("");
   const [serviceName, setServiceName] = useState("");
+  const [emailId, setEmailId] = useState("");
+  const [errorAlerts, setErrorCount] = useState(10);
   const [registrationId, setRegistrationId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = async (event: any) => {
+    debugger;
     //event.preventDefault();
     const companyName = event.companyName?.replace(/\s/g, "_");
     const projectName = event.projectName?.replace(/\s/g, "_");
     const userName = event.userName?.replace(/\s/g, "_");
     const serviceName = event.serviceName?.replace(/\s/g, "_");
+    const emailId = event.emailId;
+    const errorAlerts = event.errorAlerts;
 
     setIsLoading(true);
     setError("");
@@ -31,7 +36,9 @@ const RegistrationForm: React.FC = () => {
           companyName,
           projectName,
           userName,
-          serviceName
+          serviceName,
+          emailId,
+          errorAlerts
         },
         {
           headers: {
@@ -42,6 +49,7 @@ const RegistrationForm: React.FC = () => {
 
       setRegistrationId(response.data.registrationId);
     } catch (error) {
+      debugger;
       setError("An error occurred. Please try again.");
       notification.error({
         message: "An error occurred. Please try again."
@@ -58,6 +66,8 @@ const RegistrationForm: React.FC = () => {
     setProjectName("");
     setUserName("");
     setServiceName("");
+    setEmailId("");
+    setErrorCount(10);
   };
 
   const showModal = () => {
@@ -82,60 +92,6 @@ const RegistrationForm: React.FC = () => {
           </div>
         </div>
       )}
-      {/* <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="companyName">Company Name:</label>
-          <input
-            type="text"
-            id="companyName"
-            value={companyName}
-            onChange={(e) => setCompanyName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="projectName">Project Name:</label>
-          <input
-            type="text"
-            id="projectName"
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="userName">User Name:</label>
-          <input
-            type="text"
-            id="userName"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="serviceName">Service Name (Optional):</label>
-          <input
-            type="text"
-            id="serviceName"
-            value={serviceName}
-            onChange={(e) => setServiceName(e.target.value)}
-          />
-        </div>
-        <button type="submit" disabled={isLoading || !!registrationId}>
-          Register
-        </button>
-        {error && <p className="error">{error}</p>}
-        {registrationId && (
-        <div className="popup">
-          <div className="popup-content">
-            <h3>Registration ID:</h3>
-            <p>{registrationId}</p>
-            <button onClick={handlePopupClose}>Close</button>
-          </div>
-        </div>
-      )}
-      </form> */}
       <Row>
         <Col span={8}></Col>
         <Col span={8}>
@@ -159,7 +115,7 @@ const RegistrationForm: React.FC = () => {
               label="Project Name"
               name="projectName"
               htmlFor="projectName"
-              rules={[{ required: true, message: "Please input your project name!" }]}
+              rules={[{ required: true, message: "Please input your project name!" },{ message: "Please input valid project name!" , type: "string" }]}
             >
               <Input />
             </Form.Item>
@@ -168,12 +124,20 @@ const RegistrationForm: React.FC = () => {
               label="Username"
               name="userName"
               htmlFor="userName"
-              rules={[{ required: true, message: "Please input your username!" }]}
+              rules={[{ required: true, message: "Please input your username!" },{ message: "Please input valid username!" , type: "string" }]}
             >
               <Input />
             </Form.Item>
 
-            <Form.Item label="Service Name" name="serviceName" htmlFor="serviceName">
+            <Form.Item label="Service Name" name="serviceName" htmlFor="serviceName" rules={[{ message: "Please input valid service name!" , type: "string" }]}>
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="Email Id" name="emailId" htmlFor="emailId" rules={[{ required: true, message: "Please input your email id!" },{ message: "Please enter valid email id!", type:"email" }]}>
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="Error Count" name="errorAlerts" htmlFor="errorAlerts" rules={[{ required: true, message: "Please error count!" }]}>
               <Input />
             </Form.Item>
 
