@@ -1,21 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
 // import './RegistrationForm.css'; // Import the CSS file for styling
-import { Button, Col, Form, Input, Row, Popconfirm, Modal, notification } from "antd";
+import { Button, Col, Form, Input, Row, Popconfirm, Modal, notification, FormInstance } from "antd";
 
 const RegistrationForm: React.FC = () => {
-  const [companyName, setCompanyName] = useState("");
-  const [projectName, setProjectName] = useState("");
-  const [userName, setUserName] = useState("");
-  const [serviceName, setServiceName] = useState("");
-  const [emailId, setEmailId] = useState("");
-  const [errorAlerts, setErrorCount] = useState(10);
   const [registrationId, setRegistrationId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const formRef = useRef<FormInstance>(null);
   const handleSubmit = async (event: any) => {
     debugger;
     //event.preventDefault();
@@ -25,13 +18,11 @@ const RegistrationForm: React.FC = () => {
     const serviceName = event.serviceName?.replace(/\s/g, "_");
     const emailId = event.emailId;
     const errorAlerts = event.errorAlerts;
-
     setIsLoading(true);
-    setError("");
 
     try {
       const response = await axios.post(
-        "https://localhost:7155/registration/",
+        "https://loggerregistration20230707150626.azurewebsites.net/registration/",
         {
           companyName,
           projectName,
@@ -49,25 +40,12 @@ const RegistrationForm: React.FC = () => {
 
       setRegistrationId(response.data.registrationId);
     } catch (error) {
-      debugger;
-      setError("An error occurred. Please try again.");
       notification.error({
         message: "An error occurred. Please try again."
       });
-      console.error("Error:", error);
     }
 
     setIsLoading(false);
-  };
-
-  const handlePopupClose = () => {
-    setRegistrationId("");
-    setCompanyName("");
-    setProjectName("");
-    setUserName("");
-    setServiceName("");
-    setEmailId("");
-    setErrorCount(10);
   };
 
   const showModal = () => {
@@ -76,7 +54,8 @@ const RegistrationForm: React.FC = () => {
 
   const handleOk = () => {
     setIsModalOpen(false);
-    handlePopupClose();
+    setRegistrationId("");
+    formRef.current?.resetFields();
   };
 
   const handleCancel = () => {
@@ -97,6 +76,7 @@ const RegistrationForm: React.FC = () => {
         <Col span={8}>
           <Form
             name="basic"
+            ref={formRef}
             initialValues={{ remember: true }}
             onFinish={handleSubmit}
             layout="vertical"
