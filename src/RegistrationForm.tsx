@@ -23,7 +23,7 @@ const RegistrationForm: React.FC = () => {
 //https://loggerregistration20230707150626.azurewebsites.net/registration/
     try {
       const response = await axios.post(
-        "https://ec2-3-9-132-176.eu-west-2.compute.amazonaws.com/registration/",
+        "https://localhost:7155/registration/",
         {
           companyName,
           projectName,
